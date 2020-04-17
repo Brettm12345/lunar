@@ -1,15 +1,15 @@
-import { punctuation } from '../constants/punctuation'
+import {punctuation} from '../constants/punctuation'
 
-const { isArray } = Array
+const {isArray} = Array
 
 export type Skippable = punctuation | [punctuation, boolean]
 
 export const skippableValue = (x: Skippable): punctuation =>
-    isArray(x) ? x[0] : x
+  isArray(x) ? x[0] : x
 
 export type DelimitedParsingConfig = Partial<{
-    start: Skippable
-    stop: Skippable
-    separator: Skippable
-    stopEarly: boolean
+  start: Skippable
+  stop: Skippable
+  separator: Skippable
+  stopEarly: boolean
 }>

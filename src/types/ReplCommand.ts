@@ -1,5 +1,5 @@
 export interface ReplCommand {
-    value: string
-    description: string
-    exec: () => void
+  value: string
+  description: string
+  exec: () => void
 }

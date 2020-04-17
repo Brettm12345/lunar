@@ -1,85 +1,85 @@
-import { operatorIds, unaryOperator } from '../constants/operators'
+import {operatorIds, unaryOperator} from '../constants/operators'
 
 const toNumber = (x: unknown) => {
-    if (typeof x !== 'number') {
-        throw new Error(`Expected number but got ${JSON.stringify(x)}`)
-    }
+  if (typeof x !== 'number') {
+    throw new Error(`Expected number but got ${JSON.stringify(x)}`)
+  }
 
-    return x
+  return x
 }
 
 const div = (x: unknown) => {
-    if (toNumber(x) === 0) {
-        throw new Error('Cannot divide by zero')
-    }
+  if (toNumber(x) === 0) {
+    throw new Error('Cannot divide by zero')
+  }
 
-    return toNumber(x)
+  return toNumber(x)
 }
 
 export const applyUnaryOperator = (operator: unaryOperator, body: unknown) => {
-    // TODO: refactor
+  // TODO: refactor
 
-    if (operator === operatorIds.substract) {
-        return -toNumber(body)
-    } else if (operator === operatorIds.not) {
-        return !body
-    } else if (operator === operatorIds.add) {
-        return toNumber(body)
-    }
+  if (operator === operatorIds.substract) {
+    return -toNumber(body)
+  } else if (operator === operatorIds.not) {
+    return !body
+  } else if (operator === operatorIds.add) {
+    return toNumber(body)
+  }
 
-    throw new Error(`Can't apply operator ${operator}`)
+  throw new Error(`Can't apply operator ${operator}`)
 }
 
 export const applyBinaryOperator = async (
-    operator: operatorIds,
-    left: unknown,
-    right: unknown
+  operator: operatorIds,
+  left: unknown,
+  right: unknown
 ) => {
-    // TODO: refactor
+  // TODO: refactor
 
-    if (operator === operatorIds.add) {
-        return toNumber(left) + toNumber(right)
-    } else if (operator === operatorIds.substract) {
-        return toNumber(left) - toNumber(right)
-    } else if (operator === operatorIds.multiply) {
-        return toNumber(left) * toNumber(right)
-    } else if (operator === operatorIds.divide) {
-        return toNumber(left) / div(right)
-    } else if (operator === operatorIds.modulo) {
-        return toNumber(left) % div(right)
-    } else if (operator === operatorIds.power) {
-        return toNumber(left) ** toNumber(right)
-    } else if (operator === operatorIds.bitwiseAnd) {
-        return toNumber(left) & toNumber(right)
-    } else if (operator === operatorIds.bitwiseOr) {
-        return toNumber(left) | toNumber(right)
-    } else if (operator === operatorIds.bitwiseXor) {
-        return toNumber(left) ^ toNumber(right)
-    } else if (operator === operatorIds.and) {
-        return left && right
-    } else if (operator === operatorIds.or) {
-        return left || right
-    } else if (operator === operatorIds.xor) {
-        return (left || right) && !(left && right)
-    } else if (operator === operatorIds.smaller) {
-        return toNumber(left) < toNumber(right)
-    } else if (operator === operatorIds.greater) {
-        return toNumber(left) > toNumber(right)
-    } else if (operator === operatorIds.smallerOrEqual) {
-        return toNumber(left) <= toNumber(right)
-    } else if (operator === operatorIds.greaterOrEqual) {
-        return toNumber(left) >= toNumber(right)
-    } else if (operator === operatorIds.equal) {
-        return left === right
-    } else if (operator === operatorIds.notEqual) {
-        return left !== right
-    } else if (operator === operatorIds.pipe) {
-        if (!(right instanceof Function)) {
-            throw new Error(`Cannot call ${right}`)
-        }
-
-        return await right(left)
+  if (operator === operatorIds.add) {
+    return toNumber(left) + toNumber(right)
+  } else if (operator === operatorIds.substract) {
+    return toNumber(left) - toNumber(right)
+  } else if (operator === operatorIds.multiply) {
+    return toNumber(left) * toNumber(right)
+  } else if (operator === operatorIds.divide) {
+    return toNumber(left) / div(right)
+  } else if (operator === operatorIds.modulo) {
+    return toNumber(left) % div(right)
+  } else if (operator === operatorIds.power) {
+    return toNumber(left) ** toNumber(right)
+  } else if (operator === operatorIds.bitwiseAnd) {
+    return toNumber(left) & toNumber(right)
+  } else if (operator === operatorIds.bitwiseOr) {
+    return toNumber(left) | toNumber(right)
+  } else if (operator === operatorIds.bitwiseXor) {
+    return toNumber(left) ^ toNumber(right)
+  } else if (operator === operatorIds.and) {
+    return left && right
+  } else if (operator === operatorIds.or) {
+    return left || right
+  } else if (operator === operatorIds.xor) {
+    return (left || right) && !(left && right)
+  } else if (operator === operatorIds.smaller) {
+    return toNumber(left) < toNumber(right)
+  } else if (operator === operatorIds.greater) {
+    return toNumber(left) > toNumber(right)
+  } else if (operator === operatorIds.smallerOrEqual) {
+    return toNumber(left) <= toNumber(right)
+  } else if (operator === operatorIds.greaterOrEqual) {
+    return toNumber(left) >= toNumber(right)
+  } else if (operator === operatorIds.equal) {
+    return left === right
+  } else if (operator === operatorIds.notEqual) {
+    return left !== right
+  } else if (operator === operatorIds.pipe) {
+    if (!(right instanceof Function)) {
+      throw new Error(`Cannot call ${right}`)
     }
 
-    throw new Error(`Can't apply operator ${operator}`)
+    return await right(left)
+  }
+
+  throw new Error(`Can't apply operator ${operator}`)
 }
