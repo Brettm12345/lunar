@@ -36,7 +36,7 @@ export class AstBuilder {
    * Parses a sequence of values.
    *
    * @param start The punctuation to start the sequence.
-   * @param stop The puncuation to stop everything.
+   * @param stop The punctuation to stop everything.
    * @param separators The thing which separates values.
    * @param parser Function to parse individual values.
    */
@@ -135,13 +135,13 @@ export class AstBuilder {
   }
 
   private trySkippingPunctuation(skippable?: Skippable) {
-    const canBeSkiped = this.canBeSkipped(skippable)
+    const canBeSkipped = this.canBeSkipped(skippable)
 
-    if (canBeSkiped || (skippable && isArray(skippable))) {
+    if (canBeSkipped || (skippable && isArray(skippable))) {
       this.skipPunctuation(skippableValue(skippable!))
     }
 
-    return canBeSkiped
+    return canBeSkipped
   }
 
   private skipPunctuation(character: punctuation) {
@@ -162,11 +162,11 @@ export class AstBuilder {
 
   private unexpected(token: Token | null) {
     if (token === null) {
-      return this.input.croak(`Cnnot read past end of file`)
+      return this.input.croak(`Cannot read past end of file`)
     }
 
     this.input.croak(
-      `Unexpected token of type ${token.typeName()}. Recived ${token.name()}: ${
+      `Unexpected token of type ${token.typeName()}. Received ${token.name()}: ${
         token.value
       }`
     )
@@ -320,7 +320,7 @@ export class AstBuilder {
   private parseDefinitions(): Ast<AstNodeType.define> {
     const constant = this.isConstant()
 
-    // skip declare or const depenging on the variable type
+    // skip declare or const depending on the variable type
     this.skipKeyword(constant ? keywords.const : keywords.declare)
 
     const parser = (constant ? this.parseConstant : this.parseDeclaration).bind(

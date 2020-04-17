@@ -1,8 +1,8 @@
-import {Enviroment} from '../classes/Enviroment'
+import {Environment} from '../classes/Environment'
 import {withMetadata} from '../helpers/withMetadata'
 
-export const async = (enviroemnt: Enviroment) => {
-  enviroemnt.defineConst(
+export const async = (environment: Environment) => {
+  environment.defineConst(
     'parallel',
     withMetadata(
       ['...functions'],
@@ -16,7 +16,7 @@ export const async = (enviroemnt: Enviroment) => {
     )
   )
 
-  enviroemnt.defineConst(
+  environment.defineConst(
     'race',
     withMetadata(
       ['...functions'],

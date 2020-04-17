@@ -3,7 +3,7 @@ import {createAst} from './createAst'
 import {evaluate} from './evaluate'
 import {resolve} from 'path'
 import {LunarSourceReader} from '../classes/FileReader'
-import {createStandardEnviroment} from './createStandardEnviroment'
+import {createStdEnv} from './createStandardEnvironment'
 
 export const interpret = async (path: string, command: LunarCommand) => {
   const reader = new LunarSourceReader(command.logger)
@@ -13,7 +13,7 @@ export const interpret = async (path: string, command: LunarCommand) => {
   const ast = await createAst(reader, command)
 
   try {
-    await evaluate(ast, createStandardEnviroment(reader))
+    await evaluate(ast, createStdEnv(reader))
   } catch (error) {
     reader.endWith(error.message)
   }

@@ -1,14 +1,14 @@
-import {Enviroment} from '../classes/Enviroment'
+import {Environment} from '../classes/Environment'
 import {withMetadata} from '../helpers/withMetadata'
 
-export const cast = (enviroemnt: Enviroment) => {
-  enviroemnt.defineConst(
+export const cast = (environment: Environment) => {
+  environment.defineConst(
     'int',
     withMetadata(['value'], (x: unknown) => {
       return Math.floor(Number(x))
     })
   )
 
-  enviroemnt.defineConst('float', withMetadata(['value'], Number))
-  enviroemnt.defineConst('string', withMetadata(['value'], String))
+  environment.defineConst('float', withMetadata(['value'], Number))
+  environment.defineConst('string', withMetadata(['value'], String))
 }

@@ -1,18 +1,18 @@
-import {Enviroment} from '../classes/Enviroment'
+import {Environment} from '../classes/Environment'
 import {AstNodeType, Ast} from '../types/Ast'
 
 export const functionMetadata = Symbol('metadata')
 
 export const createFunction = (
-  enviroment: Enviroment,
+  environment: Environment,
   expression: Ast<AstNodeType.anonymousFunction>,
   evaluate: (
     _expression: typeof expression.body,
-    scope: Enviroment
+    scope: Environment
   ) => Promise<unknown>
 ) => (...params: unknown[]) => {
   const names = expression.arguments
-  const scope = enviroment.extend()
+  const scope = environment.extend()
 
   if (params[0] === functionMetadata) {
     return names

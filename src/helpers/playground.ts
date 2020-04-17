@@ -4,7 +4,7 @@ import {createAst} from './createAst'
 import {evaluate} from './evaluate'
 import chalk from 'chalk'
 import {logResult} from './logResult'
-import {createStandardEnviroment} from './createStandardEnviroment'
+import {createStdEnv} from './createStandardEnvironment'
 import {question} from './question'
 import {replCommands} from '../constants/replCommands'
 
@@ -16,7 +16,7 @@ export const createPlayground = (command: LunarCommand) => () => {
   )
 
   const reader = new LunarSourceReader(command.logger)
-  const globalEnviroment = createStandardEnviroment(reader)
+  const globalEnvironment = createStdEnv(reader)
 
   let errors: number[] = []
 
@@ -46,7 +46,7 @@ export const createPlayground = (command: LunarCommand) => () => {
 
       try {
         if (ast) {
-          logResult(await evaluate(ast, globalEnviroment))
+          logResult(await evaluate(ast, globalEnvironment))
         } else {
           throw new Error('Failed to evaluate ast')
         }

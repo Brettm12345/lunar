@@ -1,10 +1,10 @@
-import {Enviroment} from '../classes/Enviroment'
+import {Environment} from '../classes/Environment'
 
 export const include = (
-  enviroment: Enviroment,
-  ...libraries: ((enviroment: Enviroment) => void)[]
+  environment: Environment,
+  ...libraries: ((environment: Environment) => void)[]
 ) => {
   for (const library of libraries) {
-    library(enviroment)
+    library(environment)
   }
 }

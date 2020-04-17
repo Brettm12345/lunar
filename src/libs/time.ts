@@ -1,17 +1,17 @@
-import {Enviroment} from '../classes/Enviroment'
+import {Environment} from '../classes/Environment'
 import {withMetadata} from '../helpers/withMetadata'
 import {sleep} from '../helpers/sleep'
 import {performance} from 'perf_hooks'
 
-export const time = (enviroemnt: Enviroment) => {
+export const time = (environment: Environment) => {
   const start = performance.now()
 
-  enviroemnt.defineConst(
+  environment.defineConst(
     'sleep',
     withMetadata(['seconds'], (time: number) => sleep(time * 1000))
   )
 
-  enviroemnt.defineConst(
+  environment.defineConst(
     'now',
     withMetadata([], () => performance.now() - start)
   )

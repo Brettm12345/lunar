@@ -6,13 +6,13 @@ export interface Variable {
   constant: boolean
 }
 
-export class Enviroment {
+export class Environment {
   public variables: Record<string, Variable>
 
   private variablePrefix = '___'
 
   public constructor(
-    public parent: Enviroment | null,
+    public parent: Environment | null,
     public input: LunarSourceReader
   ) {
     this.variables = Object.create(this.parent ? this.parent.variables : Object)
@@ -23,11 +23,11 @@ export class Enviroment {
   }
 
   public extend() {
-    return new Enviroment(this, this.input)
+    return new Environment(this, this.input)
   }
 
   public lookup(name: string) {
-    let scope: Enviroment = this
+    let scope: Environment = this
 
     while (scope) {
       if (scope.variables.hasOwnProperty(this.prependPrefix(name))) {
