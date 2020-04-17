@@ -2,6 +2,7 @@ dependencies:
   '@types/node': 12.12.31
   chalk: 2.4.2
   commander: 3.0.2
+  fp-ts: 2.5.3
   fs-extra: 8.1.0
 devDependencies:
   '@types/fs-extra': 8.1.0
@@ -70,6 +71,10 @@ packages:
       node: '>=0.8.0'
     resolution:
       integrity: sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
+  /fp-ts/2.5.3:
+    dev: false
+    resolution:
+      integrity: sha512-lQd+hahLd8cygNoXbEHDjH/cbF6XVWlEPb8h5GXXlozjCSDxWgclvkpOoTRfBA0P+r69l9VvW1nEsSGIJRQpWw==
   /fs-extra/8.1.0:
     dependencies:
       graceful-fs: 4.2.3
@@ -161,6 +166,7 @@ specifiers:
   '@types/node': ^12.11.1
   chalk: ^2.4.2
   commander: ^3.0.2
+  fp-ts: ^2.5.3
   fs-extra: ^8.1.0
   ts-node: ^8.4.1
   typescript: ^3.8.3
